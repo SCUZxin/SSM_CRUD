@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <%--引入Jquery--%>
+    <%--引入JQuery--%>
     <script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
     <%--引入样式--%>
     <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
