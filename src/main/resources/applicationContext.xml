@@ -24,7 +24,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 指定Mybatis全局配置文件的位置 -->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="dataSource" value="pooledDataSource" />
+        <property name="dataSource" ref="pooledDataSource" />
         <!-- 指定Mybatis，mapper文件的位置 -->
         <property name="mapperLocations" value="classpath:mapper/*.xml" />
     </bean>
@@ -45,8 +45,9 @@
     <!--=============================事务控制的配置==========================-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--控制住数据源-->
-        <property name="dataSource " ref="pooledDataSource"/>
+        <property name="dataSource" ref="pooledDataSource"/>
     </bean>
+
     <!--开启基于注解的事务，使用xml配置形式的事务（比较重要的都是使用配置式）  -->
     <aop:config>
         <!--切入点表达式-->
