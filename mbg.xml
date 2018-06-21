@@ -11,7 +11,7 @@
         </commentGenerator>
         <!-- 配置数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/ssm_crud?serverTimezone=GMT&amp;useSSL=true"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm_crud?serverTimezone=GMT&amp;useSSL=false"
                         userId="root"
                         password="930701">
         </jdbcConnection>
