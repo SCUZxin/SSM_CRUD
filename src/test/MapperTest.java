@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -49,13 +50,18 @@ public class MapperTest {
 //        employeeMapper.insertSelective(new Employee(null,"Jerry","M","Jerry.atguigu.com",1));
 
         //3. 批量插入多个员工：批量，使用可以执行批量操作的sqlSession
-        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
-        for(int i=1;i<1000;i++){
-            String uid = UUID.randomUUID().toString().substring(0,5)+i;
-            mapper.insertSelective(new Employee(null, uid, "M", uid+"@atguigu.com", 1));
-        }
+//        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+//        for(int i=1;i<1000;i++){
+//            String uid = UUID.randomUUID().toString().substring(0,5)+i;
+//            mapper.insertSelective(new Employee(null, uid, "M", uid+"@atguigu.com", 1));
+//        }
 
         //4. 测试修改和删除
 
+        //5.测试查询数据
+        List<Department> list = departmentMapper.selectByExample(null);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getDeptName());
+        }
     }
 }
