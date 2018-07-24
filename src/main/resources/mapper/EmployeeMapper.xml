@@ -134,6 +134,10 @@
     WHERE emp_id = #{empId,jdbcType=INTEGER}
   </select>
 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_emp
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.zxin.crud.bean.EmployeeExample">
     delete from tbl_emp
     <if test="_parameter != null">
@@ -222,5 +226,31 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxin.crud.bean.Employee">
+    update tbl_emp
+    <set>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="dId != null">
+        d_id = #{dId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxin.crud.bean.Employee">
+    update tbl_emp
+    set emp_name = #{empName,jdbcType=VARCHAR},
+    gender = #{gender,jdbcType=CHAR},
+    email = #{email,jdbcType=VARCHAR},
+    d_id = #{dId,jdbcType=INTEGER}
+    where emp_id = #{empId,jdbcType=INTEGER}
   </update>
 </mapper>
