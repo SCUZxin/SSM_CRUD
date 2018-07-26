@@ -37,29 +37,29 @@ public class MvcTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
-    @Test
-    public void testPage() throws Exception {
-        //模拟请求拿到返回值
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/emps").param("pn", "5")).andReturn();
-        //请求成功以后，请求域中会有pageInfo，我们可以取出pageInfo进行验证
-        MockHttpServletRequest request = result.getRequest();
-        PageInfo pi = (PageInfo) request.getAttribute("pageInfo");
-        System.out.println("当前页码："+pi.getPageNum());
-        System.out.println("总页码："+pi.getPages());
-        System.out.println("总记录数："+pi.getTotal());
-        System.out.print("在页面需要连续显示的页码：");
-        int nums[] = pi.getNavigatepageNums();
-        for (int i : nums) {
-            System.out.print(i+" ");
-        }
-        System.out.println();
-
-        //获取员工数据
-        List<Employee> list = pi.getList();
-        for (Employee employee : list) {
-            System.out.println("ID："+employee.getEmpId()+"==>Name:"+employee.getEmpName());
-        }
-
-    }
+//    @Test
+//    public void testPage() throws Exception {
+//        //模拟请求拿到返回值
+//        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/emps").param("pn", "5")).andReturn();
+//        //请求成功以后，请求域中会有pageInfo，我们可以取出pageInfo进行验证
+//        MockHttpServletRequest request = result.getRequest();
+//        PageInfo pi = (PageInfo) request.getAttribute("pageInfo");
+//        System.out.println("当前页码："+pi.getPageNum());
+//        System.out.println("总页码："+pi.getPages());
+//        System.out.println("总记录数："+pi.getTotal());
+//        System.out.print("在页面需要连续显示的页码：");
+//        int nums[] = pi.getNavigatepageNums();
+//        for (int i : nums) {
+//            System.out.print(i+" ");
+//        }
+//        System.out.println();
+//
+//        //获取员工数据
+//        List<Employee> list = pi.getList();
+//        for (Employee employee : list) {
+//            System.out.println("ID："+employee.getEmpId()+"==>Name:"+employee.getEmpName());
+//        }
+//
+//    }
 
 }

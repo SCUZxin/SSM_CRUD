@@ -6,6 +6,7 @@ import com.zxin.crud.dao.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,5 +50,21 @@ public class EmployeeService {
 
     public void updateEmp(Employee employee) {
         employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    /**
+     * 员工删除
+     * @param empId
+     */
+    public void deleteEmp(Integer empId) {
+        employeeMapper.deleteByPrimaryKey(empId);
+    }
+
+    public void deleteBatch(ArrayList<Integer> del_ids) {
+        EmployeeExample example = new EmployeeExample();
+        EmployeeExample.Criteria criteria = example.createCriteria();
+        //delete from XXX where emp_id in(1,2,3);
+        criteria.andEmpIdIn(del_ids);
+        employeeMapper.deleteByExample(example);
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,34 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+
+
+    /**
+     * 单个批量二合一
+     * 批量删除：1-2-3
+     * 单个删除：1
+     * @param empIds
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/emp/{empIds}", method = RequestMethod.DELETE)
+    public Msg deleteEmp(@PathVariable("empIds") String empIds){
+        //批量删除
+        if(empIds.contains("-")){
+            ArrayList<Integer> del_ids = new ArrayList<>();
+            String[] str_ids = empIds.split("-");
+            //组装id的集合
+            for (String string: str_ids) {
+                del_ids.add(Integer.parseInt(string));
+            }
+            employeeService.deleteBatch(del_ids);
+        }else{
+            //单个删除
+            employeeService.deleteEmp(Integer.parseInt(empIds));
+        }
+
+        return Msg.success();
+    }
 
 
     /**
